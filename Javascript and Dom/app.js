@@ -29,9 +29,13 @@ mybutton.addEventListener('click', () => {
 
 const togglelist = document.getElementById('togglelist')
 const listdiv = document.querySelector('.list')
-const input = document.querySelector('input.description');
-const p = document.querySelector('p.description');
-const button = document.querySelector('button.description')
+const descriptioninput = document.querySelector('input.description');
+const descriptionp = document.querySelector('p.description');
+const descriptionbutton = document.querySelector('button.description')
+const additeminput = document.querySelector('input.additeminput')
+const addinputbutton = document.querySelector('button.additembutton')
+const removeitembutton = document.querySelector('button.removeitembutton')
+
 
 togglelist.addEventListener('click', () => {
   if (listdiv.style.display == 'none'){
@@ -44,9 +48,25 @@ togglelist.addEventListener('click', () => {
 })
 
 
-button.addEventListener('click', () => {
+descriptionbutton.addEventListener('click', () => {
   //p.textContent = input.value + ':';
-  p.innerHTML = input.value + ':'; // with this the inner html code can be alterd
-})
+  descriptionp.innerHTML = descriptioninput.value + ':'; // with this the inner html code can be alterd
+  descriptioninput.value = '';
+});
 
-p.title = "list description"
+descriptionp.title = "list description";
+
+addinputbutton.addEventListener('click', () => {
+  let ul = document.getElementsByTagName('ul')[0];
+  let li = document.querySelector('li:last-child');
+  li.textContent = additeminput.value;
+  ul.appendChild(li);
+  additeminput.value = '';
+});
+
+
+removeitembutton.addEventListener('click', () => {
+  let ul = document.getElementsByTagName('ul')[0];
+  let li = document.querySelector('li:last-child');
+  ul.removeChild(li);
+});
